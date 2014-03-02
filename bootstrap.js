@@ -22,10 +22,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+<<<<<<< HEAD
   "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.store.Answer": [],
+=======
+  "DevCycleMobile.model.MapData": [],
+  "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.MapInfo": [],
+>>>>>>> dev
   "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.faq.Container": [],
   "DevCycleMobile.view.faq.Question": [],
@@ -59,6 +67,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.Img": [],
   "Ext.ItemCollection": [],
   "Ext.Label": [],
+  "Ext.Leaflet": [],
   "Ext.LoadMask": [],
   "Ext.Map": [],
   "Ext.Mask": [],
@@ -660,10 +669,18 @@ Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+<<<<<<< HEAD
   "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.store.Answer": [],
+=======
+  "DevCycleMobile.model.MapData": [],
+  "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.MapInfo": [],
+>>>>>>> dev
   "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
@@ -717,6 +734,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ItemCollection": [],
   "Ext.Label": [
     "widget.label"
+  ],
+  "Ext.Leaflet": [
+    "widget.leaflet"
   ],
   "Ext.LoadMask": [
     "widget.loadmask"

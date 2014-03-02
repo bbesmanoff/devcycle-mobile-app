@@ -1,0 +1,34 @@
+# =============================================================================
+# This file provides an override point for default variables defined in 
+# native.defaults.properties. These properties are only imported when building
+# for the "native" environment.
+#
+# Properties defined in this file take priority over build.properties but are
+# only loaded for "native" builds.
+# =============================================================================
+
+
+
+
+
+
+
+<<<<<<<=HEAD
+=\=\=\=\=\=\=
+
+
+
+
+
+
+>>>>>>>=81a9e04df62e6fe735fbac7f07f621945af02096
+
+
+
+
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 4c0644b5fcc60f7100b7dd235cc1db2c16ba968c
+build.dir=${app.cordova.www.dir}

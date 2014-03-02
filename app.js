@@ -25,7 +25,6 @@ Ext.application({
     views: [
         'Home',
         'map.Container',
-        'map.LeafletMap',
         'faq.Container',
         'tourguide.Container'
     ],
@@ -36,11 +35,15 @@ Ext.application({
     ],
 
     models: [
-        'Rider'
+        'Rider',
+        'MapData',
+        'Tour'
     ],
 
     stores: [
-        'RiderInfo'
+        'RiderInfo',
+        'MapInfo',
+        'TourInfo'
     ],
 
     icon: {
@@ -61,27 +64,67 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
+    /**
+    * areStoresLoaded()
+    * Returns true if all stores in given array are loaded,
+    * otherwise immediately returns false.
+    * 
+    * @param stores - an array of Sencha stores (see store.js in SDK or documentation
+    **/
+    areStoresLoaded: function(stores) {
+        var loaded = false;
+
+        for (var i=0; i < stores.length; i++) {
+            var store = stores[i];
+            if (store.isLoaded() == false){
+                return false;
+            }
+        }  
+
+        // All stores have been successfully loaded     
+        return true;
+    },
+
     launch: function() {
-        console.log(this);
+
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        // Initialize the main view
-        var homeView = Ext.create('DevCycleMobile.view.Home');
-        Ext.Viewport.add(homeView);
+        var mapInfo = Ext.getStore("MapInfo"); // map metadata info
+        var tourInfo = Ext.getStore("TourInfo"); //tour info
+        var riderInfo = Ext.getStore("RiderInfo"); // rider info
 
-         // Adjust toolbar height when running in iOS to fit with new iOS 7 style
+        var self = this; // reference to self
+        console.log(tourInfo);
+
+        // load all the stores before proceeding 
+        var handler = setInterval(function(){
+           loaded = self.areStoresLoaded([tourInfo, mapInfo, riderInfo]);
+
+           if (loaded){
+                // cancel interval
+                clearInterval(handler);
+                handler = 0;
+                
+                console.log("all stores are loaded.. ");
+                console.log(tourInfo);
+                // init the main view and add it to view
+                var homeView = Ext.create('DevCycleMobile.view.Home'); 
+                Ext.Viewport.add(homeView);
+           }
+        }, 100);
+
+        // Adjust toolbar height when running in iOS to fit with new iOS 7 style
         if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
             Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");
         }
 
+         // Hardware Back Button Listener
         if (Ext.os.is('Android')) {
-            // Hardware Back Button Listener
             document.addEventListener("backbutton", Ext.bind(this.onBackKeyDown, this), false);
         }
 
-        // Janky - must do this or the exit notification title may not fit properly.
-        // Sencha bug?
+        // Janky - must do this or the exit notification title may not fit properly. Possible issue in sdk.
         Ext.Msg.add({ maxHeight: 100 });
         Ext.Msg.doLayout();
     },
