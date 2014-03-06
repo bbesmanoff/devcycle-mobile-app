@@ -2,6 +2,7 @@ package edu.rit.se.trafficanalysis.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -31,6 +32,7 @@ import edu.rit.se.trafficanalysis.api.Messages.LocationUpdateResponse;
 import edu.rit.se.trafficanalysis.api.Messages.RegisterPushIdRequest;
 import edu.rit.se.trafficanalysis.api.Messages.RegisterRiderRequest;
 import edu.rit.se.trafficanalysis.api.Messages.RegisterRiderResponse;
+import edu.rit.se.trafficanalysis.tracking.TimingController;
 
 /**
  * Handles all communication *to* the DCS.
@@ -72,7 +74,7 @@ public class ApiClient {
 	 * @throws DcsException
 	 */
 	public RegisterRiderResponse register() throws DcsException {
-		String os = "IanAndroid " + Build.VERSION.RELEASE;
+		String os = "Android " + Build.VERSION.RELEASE;
 		String device = Build.PRODUCT + " (" + Build.DEVICE + ")";
 		String tourId = mTourConfig.getTourId();
 		RegisterRiderRequest data = new RegisterRiderRequest(os, device, tourId);
@@ -113,10 +115,10 @@ public class ApiClient {
 	 * @param mLocDeliverQueue
 	 * @return
 	 */
-	public Integer locationUpdate(List<LocationUpdate> mLocDeliverQueue) {
+	public LocationUpdateResponse locationUpdate(List<LocationUpdate> mLocDeliverQueue) {
 		if (!mTourConfig.isRegistered()) {
 			Log.e(TAG, "Attempted to send location data before rider registration.");
-			return -1;
+			return null;
 		}
 		
 		Log.i(TAG, "Sending locations to server.");
@@ -126,10 +128,10 @@ public class ApiClient {
 			LocationUpdateResponse riderCount = 
 				newPostRequest(ENDPOINT_LOCATION, data, LocationUpdateResponse.class);
 			Log.i(TAG, "Locations sent successfully to server.");
-			return riderCount.getRiderCount();
+			return riderCount;
 		} catch (Exception e) {
 			Log.e(TAG, "Could not send Locations to server.", e);
-			return -1;
+			return null;
 		}
 	}
 
@@ -201,8 +203,11 @@ public class ApiClient {
 		StatusLine statusLine = response.getStatusLine();
 		if (statusLine.getStatusCode() < 400) {
 			if (responseType != null) {
-				return mGson.fromJson(new BufferedReader(new InputStreamReader(
-						response.getEntity().getContent())), responseType);
+				InputStream tempResponse = response.getEntity().getContent();
+				String supertemp = convertStreamToString(tempResponse);
+				InputStreamReader temp = new InputStreamReader(tempResponse);
+//				return mGson.fromJson(new BufferedReader(temp), responseType);
+				return mGson.fromJson(supertemp, responseType);
 			}
 		} else {
 			Log.e(TAG, statusLine.getReasonPhrase());
@@ -210,7 +215,27 @@ public class ApiClient {
 		}
 		return null;
 	}
-	
+	private static String convertStreamToString(InputStream is) {
+
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+	    StringBuilder sb = new StringBuilder();
+
+	    String line = null;
+	    try {
+	        while ((line = reader.readLine()) != null) {
+	            sb.append(line + "\n");
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            is.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return sb.toString();
+	}
 	private String normalizeEndpoint(String endpoint) {
 		if (!endpoint.contains("://")) {
 			endpoint = mTourConfig.getServerUrl().replaceAll("/+$", "") + endpoint;

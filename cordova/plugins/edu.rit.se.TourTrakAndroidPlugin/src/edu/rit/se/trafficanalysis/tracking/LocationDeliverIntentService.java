@@ -7,9 +7,11 @@ import edu.rit.se.tourtrak.R;
 import edu.rit.se.trafficanalysis.TourConfig;
 import edu.rit.se.trafficanalysis.api.ApiClient;
 import edu.rit.se.trafficanalysis.api.Messages.LocationUpdate;
+import edu.rit.se.trafficanalysis.api.Messages.LocationUpdateResponse;
 import edu.rit.se.trafficanalysis.util.Util;
 import edu.rit.se.trafficanalysis.util.WakefulIntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 /**
@@ -71,15 +73,22 @@ public class LocationDeliverIntentService extends WakefulIntentService {
 
 			ApiClient ac = new ApiClient(getApplicationContext());
 
-			int numRiders = ac.locationUpdate(locations);
-			Log.i(TAG, "Response from server:" + numRiders);
+//			int numRiders = ac.locationUpdate(locations);
+			LocationUpdateResponse response = ac.locationUpdate(locations);
+			Log.i(TAG, "Response from server:" + response);
 
-			if (numRiders < 0) { // delivery was not successful
+//			if (numRiders < 0) { // delivery was not successful
+			if (response.getRider_cnt() < 0) { // delivery was not successful
 				break;
 			}
 			// if we get here we can delete the locations
 			db.deleteByTimeStamp(locations.get(locations.size() - 1).time);
-			TimingController.setRiderCount(numRiders);
+			TimingController.setRiderCount(response.getRider_cnt());
+			
+			long newDelay = (long) response.getPolling_rate() * 1000;
+			if(TimingController.getLocationDeliveryDelay(this) != newDelay && newDelay > 0) {
+				TimingController.setLocationDeliveryDelay(newDelay);
+			}
 
 			locations = db.getLocations(batchSize);
 		}

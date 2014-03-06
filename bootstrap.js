@@ -16,30 +16,31 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.Database": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
+  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
+  "Override.dataview.List": "app/view/Main.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
-  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
-<<<<<<< HEAD
   "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.store.Answer": [],
-=======
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
   "DevCycleMobile.store.MapInfo": [],
->>>>>>> dev
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.store.TourInfo": [],
+  "DevCycleMobile.controller.Task": [],
+  "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.model.Task": [],
+  "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.view.Home": [],
-  "DevCycleMobile.view.faq.Container": [],
-  "DevCycleMobile.view.faq.Question": [],
+  "DevCycleMobile.view.Main": [],
+  "DevCycleMobile.view.guide.Container": [],
+  "DevCycleMobile.view.guide.ListItem": [],
   "DevCycleMobile.view.map.Container": [],
   "DevCycleMobile.view.map.LeafletMap": [],
-  "DevCycleMobile.view.tourguide.Container": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -663,12 +664,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
-  ]
+  ],
+  "Override.dataview.List": []
 });
 Ext.ClassManager.addNameAliasMappings({
-  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+<<<<<<< HEAD
 <<<<<<< HEAD
   "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.Rider": [],
@@ -681,13 +683,23 @@ Ext.ClassManager.addNameAliasMappings({
 >>>>>>> dev
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.store.TourInfo": [],
+=======
+  "DevCycleMobile.controller.Task": [],
+  "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.model.Task": [],
+  "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.Task": [],
+>>>>>>> reimplement of faq + iOS UI upgrades
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
-  "DevCycleMobile.view.faq.Container": [
+  "DevCycleMobile.view.Main": [
+    "widget.main"
+  ],
+  "DevCycleMobile.view.guide.Container": [
     "widget.faqContainer"
   ],
-  "DevCycleMobile.view.faq.Question": [
+  "DevCycleMobile.view.guide.ListItem": [
     "widget.examplelistitem"
   ],
   "DevCycleMobile.view.map.Container": [
@@ -695,9 +707,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "DevCycleMobile.view.map.LeafletMap": [
     "widget.leafletMap"
-  ],
-  "DevCycleMobile.view.tourguide.Container": [
-    "widget.tourContainer"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -1423,5 +1432,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
-  "Ext.viewport.WindowsPhone": []
+  "Ext.viewport.WindowsPhone": [],
+  "Override.dataview.List": []
 });

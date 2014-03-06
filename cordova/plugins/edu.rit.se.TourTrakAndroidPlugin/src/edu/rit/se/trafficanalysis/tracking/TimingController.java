@@ -53,6 +53,11 @@ public class TimingController {
 		return mInitialLocationDeliveryDelay;
 	}
 
+	public static void setLocationDeliveryDelay(long newDelay) {
+		mInitialLocationDeliveryDelay = newDelay;
+		Log.i(TAG, "New Delivery Delay: " + mInitialLocationDeliveryDelay);
+	}
+	
 	public static long getLocationRequestDelay(Context c) {
 		if (!mInitConfig) {
 			initConfig(c);
@@ -156,9 +161,12 @@ public class TimingController {
 	}
 	
 	private static void initConfig(Context c) {
+		if(c==null) {
+			return;
+		}
 		Resources r = c.getResources();
-		mInitialLocationDeliveryDelay = (long) r.getInteger(
-				R.integer.locationDeliveryDelayMs);
+		setLocationDeliveryDelay((long) r.getInteger(
+				R.integer.locationDeliveryDelayMs));
 		mInitialLocationRequestDelay = (long) r.getInteger(
 				R.integer.locationRequestDelayMs);
 		mMaxBatteryUsePerHour = r.getInteger(
@@ -169,5 +177,6 @@ public class TimingController {
 				R.integer.maxBatteryTimingMultiplier100) / 100f;
 		mMinBatteryTimingMultiplier = r.getInteger(
 				R.integer.minBatteryTimingMultiplier100) / 100f;
+		mInitConfig = true;
 	}
 }

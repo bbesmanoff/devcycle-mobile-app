@@ -3,6 +3,8 @@ package edu.rit.se.trafficanalysis.api;
 import java.util.List;
 import java.util.Locale;
 
+import com.google.gson.annotations.SerializedName;
+
 import android.location.Location;
 
 /**
@@ -110,16 +112,53 @@ public class Messages {
 	 * the current number of riders still participating
 	 * in tour.
 	 */
+	/*
 	public static class LocationUpdateResponse {
 		private int rider_count;
-		
+	
 		public LocationUpdateResponse(int rider_count) {
 			this.rider_count = rider_count;
 		}
-		
+	
 		public int getRiderCount() {
 			return rider_count;
 		}
 	}
+	*/
+	
+	public static class LocationUpdateResponse {
+		@SerializedName("rider_count")
+		private int rider_cnt;
+		@SerializedName("poll_rate")
+		private int polling_rate;
 
+		public LocationUpdateResponse(int rider_cnt) {
+			this.rider_cnt = rider_cnt;
+			this.polling_rate = -1;
+			System.out.println(polling_rate);
+		}
+		
+		public LocationUpdateResponse(int rider_cnt, int polling_rate) {
+			this.rider_cnt = rider_cnt;
+			this.polling_rate = polling_rate;
+			System.out.println(polling_rate);
+		}
+
+		public int getRider_cnt() {
+			return rider_cnt;
+		}
+
+		public void setRider_cnt(int rider_cnt) {
+			this.rider_cnt = rider_cnt;
+		}
+
+		public int getPolling_rate() {
+			return polling_rate;
+		}
+
+		public void setPolling_rate(int polling_rate) {
+			this.polling_rate = polling_rate;
+		}
+	}
+	/**/
 }

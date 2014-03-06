@@ -11,33 +11,38 @@
 */
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    'MyApp': 'app',
-    'Ext.ux': './ux'
+    'Ext.ux': '../src/ux',
+    'DevCycleMobile': 'app'
 });
 
 Ext.application({
     name: 'DevCycleMobile',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'DevCycleMobile.store.Task'
     ],
 
     views: [
         'Home',
+        'Main',
         'map.Container',
-        'faq.Container',
-        'tourguide.Container'
+        'map.LeafletMap',
+        'guide.Container',
+        'guide.ListItem'
     ],
 
     controllers: [
         'Map',
-        'Home'
+        'Home',
+        'Task'
     ],
 
     models: [
         'Rider',
         'MapData',
-        'Tour'
+        'Tour',
+        'Task'
     ],
 
     stores: [
@@ -115,6 +120,11 @@ Ext.application({
         }, 100);
 
         // Adjust toolbar height when running in iOS to fit with new iOS 7 style
+        // Initialize the main view
+        var homeView = Ext.create('DevCycleMobile.view.Home');
+        Ext.Viewport.add(homeView);
+        
+         // Adjust toolbar height when running in iOS to fit with new iOS 7 style
         if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
             Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");
         }
