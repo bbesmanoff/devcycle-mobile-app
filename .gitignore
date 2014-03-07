@@ -4,3 +4,9 @@ build/
 
 # sass cache folder
 resources/sass/.sass-cache
+
+# .DS_Store
+.DS_Store
+
+# Cordova folder
+cordova/
