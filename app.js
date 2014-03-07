@@ -11,7 +11,7 @@
 */
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    'Ext.ux': '../src/ux',
+    'Ext.ux': 'touch/src/ux',
     'DevCycleMobile': 'app'
 });
 
@@ -20,7 +20,8 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
-        'DevCycleMobile.store.Task'
+        'DevCycleMobile.store.BeforeTheTour',
+        'DevCycleMobile.store.GettingReady'
     ],
 
     views: [
@@ -35,14 +36,14 @@ Ext.application({
     controllers: [
         'Map',
         'Home',
-        'Task'
+        'Answer'
     ],
 
     models: [
         'Rider',
         'MapData',
         'Tour',
-        'Task'
+        'Answer'
     ],
 
     stores: [

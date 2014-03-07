@@ -20,12 +20,41 @@ Ext.define('DevCycleMobile.view.Main', {
                 docked: 'top'
             },
             {
-                title: 'Paging',
+                title: 'Before The Tour',
                 layout: 'vbox',
                 items: [
                     {
                         xtype: 'accordionlist',
-                        store: Ext.create('DevCycleMobile.store.Task'),
+                        store: Ext.create('DevCycleMobile.store.BeforeTheTour'),
+                        flex: 1,
+                        itemId: 'paging',
+                        listeners: {
+                            initialize: function() {
+                                this.load();
+                            }
+                        }
+                    }
+                ],
+                control: {
+                    'button[action=expand]': {
+                        tap: function() {
+                            this.down('accordionlist').doAllExpand();
+                        }
+                    },
+                     'button[action=collapse]': {
+                        tap: function() {
+                            this.down('accordionlist').doAllCollapse();
+                        }
+                    }
+                }
+            },
+            {
+                title: 'Getting Ready',
+                layout: 'vbox',
+                items: [
+                    {
+                        xtype: 'accordionlist',
+                        store: Ext.create('DevCycleMobile.store.GettingReady'),
                         flex: 1,
                         itemId: 'paging',
                         listeners: {

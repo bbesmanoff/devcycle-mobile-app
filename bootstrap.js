@@ -20,21 +20,18 @@ Ext.Loader.addClassPathMappings({
   "Override.dataview.List": "app/view/Main.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.Answer": [],
-  "DevCycleMobile.model.Rider": [],
-  "DevCycleMobile.store.Answer": [],
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.GettingReady": [],
   "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.store.TourInfo": [],
-  "DevCycleMobile.controller.Task": [],
-  "DevCycleMobile.model.Rider": [],
-  "DevCycleMobile.model.Task": [],
-  "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.Main": [],
   "DevCycleMobile.view.guide.Container": [],
@@ -668,28 +665,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "Override.dataview.List": []
 });
 Ext.ClassManager.addNameAliasMappings({
+  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
-<<<<<<< HEAD
-<<<<<<< HEAD
   "DevCycleMobile.model.Answer": [],
-  "DevCycleMobile.model.Rider": [],
-  "DevCycleMobile.store.Answer": [],
-=======
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.GettingReady": [],
   "DevCycleMobile.store.MapInfo": [],
->>>>>>> dev
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.store.TourInfo": [],
-=======
-  "DevCycleMobile.controller.Task": [],
-  "DevCycleMobile.model.Rider": [],
-  "DevCycleMobile.model.Task": [],
-  "DevCycleMobile.store.RiderInfo": [],
-  "DevCycleMobile.store.Task": [],
->>>>>>> reimplement of faq + iOS UI upgrades
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
