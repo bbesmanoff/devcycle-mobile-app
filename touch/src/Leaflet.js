@@ -167,13 +167,14 @@ Ext.define('Ext.Leaflet', {
             attribution: mapInfo.attribution,
             maxZoom: mapInfo.maxzoom,
             minZoom: mapInfo.minzoom,
-            errorTileUrl: 'resources/images/error_tile.png'
+            errorTileUrl: 'resources/images/error_tile.png',
+            updateWhenIdle: true
         });
 
         mapOptions = Ext.merge({
             layers : [this.tileLayer],
-            zoom : this.zoomLevel || 15,
-            maxZoom : mapInfo.maxzoon,
+            zoom : this.zoomLevel || mapInfo.maxzoom,
+            maxZoom : mapInfo.maxzoom,
             minZoom : mapInfo.minzoom,
             zoomControl : true,
             attributionControl : true,
@@ -181,8 +182,6 @@ Ext.define('Ext.Leaflet', {
             maxBounds : L.latLngBounds(southWest, northEast)
         }, mapOptions);
 
-        console.log("IS NULL????");
-        console.log(this.map);
 
         if (this.map === undefined){
           this.map = new L.Map(element.id, mapOptions);

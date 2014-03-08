@@ -37,7 +37,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.view.guide.Container": [],
   "DevCycleMobile.view.guide.ListItem": [],
   "DevCycleMobile.view.map.Container": [],
-  "DevCycleMobile.view.map.LeafletMap": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -691,9 +690,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "DevCycleMobile.view.map.Container": [
     "widget.mapContainer"
-  ],
-  "DevCycleMobile.view.map.LeafletMap": [
-    "widget.leafletMap"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],

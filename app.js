@@ -28,7 +28,6 @@ Ext.application({
         'Home',
         'Main',
         'map.Container',
-        'map.LeafletMap',
         'guide.Container',
         'guide.ListItem'
     ],
@@ -74,7 +73,7 @@ Ext.application({
     * areStoresLoaded()
     * Returns true if all stores in given array are loaded,
     * otherwise immediately returns false.
-    * 
+    *
     * @param stores - an array of Sencha stores (see store.js in SDK or documentation
     **/
     areStoresLoaded: function(stores) {
@@ -85,9 +84,9 @@ Ext.application({
             if (store.isLoaded() == false){
                 return false;
             }
-        }  
+        }
 
-        // All stores have been successfully loaded     
+        // All stores have been successfully loaded
         return true;
     },
 
@@ -101,9 +100,8 @@ Ext.application({
         var riderInfo = Ext.getStore("RiderInfo"); // rider info
 
         var self = this; // reference to self
-        console.log(tourInfo);
 
-        // load all the stores before proceeding 
+        // load all the stores before proceeding
         var handler = setInterval(function(){
            loaded = self.areStoresLoaded([tourInfo, mapInfo, riderInfo]);
 
@@ -111,11 +109,9 @@ Ext.application({
                 // cancel interval
                 clearInterval(handler);
                 handler = 0;
-                
-                console.log("all stores are loaded.. ");
-                console.log(tourInfo);
+
                 // init the main view and add it to view
-                var homeView = Ext.create('DevCycleMobile.view.Home'); 
+                var homeView = Ext.create('DevCycleMobile.view.Home');
                 Ext.Viewport.add(homeView);
            }
         }, 100);
@@ -140,18 +136,18 @@ Ext.application({
         Ext.Msg.doLayout();
     },
 
-    /** 
+    /**
     * Captures the back key press on Android.
     * Doing this from home screen of app will kill the activity.
     **/
     onBackKeyDown: function (e) {
-    
+
         Ext.Msg.confirm(
             "Confirmation",
             "Are you sure you want to exit? This will stop all tracking. Consider pressing the home button instead.",
             function(buttonId) {
                 if (buttonId === 'yes') {
-                    navigator.app.exitApp(); 
+                    navigator.app.exitApp();
                 }
             }
         );
@@ -171,9 +167,9 @@ Ext.application({
         );
     },
 
-    // Android Push Notification Handler 
+    // Android Push Notification Handler
     onNotificationGCM: function(e){
-    
+
         switch ( e.event ) {
             case 'registered':
                 if (e.regid.length > 0) {
@@ -212,7 +208,7 @@ Ext.application({
                 // notification happened while in foreground
                 if ( e.foreground ) {
                     // play noise? TODO
-                   
+
                 } else {
                     // launched from touching notification in tray
                     if ( e.coldstart ){
