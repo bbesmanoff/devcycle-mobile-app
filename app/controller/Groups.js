@@ -13,7 +13,7 @@ var CODE_MIN = 3;
 var CODE_MAX = 7;
 var NAME_MAX = 30;
 var numGroups = 0;
-var colorArray = ["blue", "red", "green", "orange", "purple"];
+var colorArray = ["red", "green", "orange", "purple"];
 
 
 Ext.define('Group', {

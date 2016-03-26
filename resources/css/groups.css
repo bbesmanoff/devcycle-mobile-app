@@ -2,3 +2,7 @@
 {
 	background: #000000;
 }
+
+.leaflet-usermarker-red {
+  background: url(../images/reddot.png) !important;
+}

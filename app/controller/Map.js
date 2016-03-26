@@ -122,9 +122,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 				* gets set to the correct color "color". Adding this line forces the color
 				* to be correctly set for every riderRecord, not just every record after the first
 				*/
-	 		    riderMarker.setColor(col);
 	 		    console.log("The lat and long from the store for riderId " + riderRecord.get('riderId') + " and group code " + groupCode + " is " + riderRecord.get('latitude') + " " + riderRecord.get('longitude'));
-
 
 	 		    // Create the rider marker
 	 			riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
@@ -136,6 +134,10 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 	        	riderId: riderRecord.get('riderId'),
 	 	        	groupCode: groupCode
 	 	    	});
+          
+          // set the css class for the colored group dot
+          riderMarker.valueOf().options.icon.options.className = 'leaflet-usermaker-' + col;
+
 	 	    	riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <h2><b>Group: </b> " + groupRecord.get('groupCode') + "</h2>", {offset: new L.Point(0,-20)});
 	 	    	newGroup.addLayer(riderMarker);
 			});
